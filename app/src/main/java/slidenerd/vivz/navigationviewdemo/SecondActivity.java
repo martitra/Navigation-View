@@ -66,6 +66,8 @@ public class SecondActivity extends AppCompatActivity {
             Snackbar.make(mRoot, "One or More Field are black", Snackbar.LENGTH_SHORT)
                     .setAction(getString(R.string.text_dismiss), mSnackBarClickListener)
                     .show();
+            mPasswordLayout.setError("Password cannot be empty");
+            mEmailLayout.setError("Email cannot be empty");
         } else if (isEmptyEmail) {
             mEmailLayout.setError("Email cannot be empty");
             mPasswordLayout.setError(null);
@@ -74,7 +76,9 @@ public class SecondActivity extends AppCompatActivity {
             mEmailLayout.setError(null);
         } else {
             //All good here
-            Toast.makeText(SecondActivity.this, "else", Toast.LENGTH_SHORT).show();
+            mPasswordLayout.setError(null);
+            mEmailLayout.setError(null);
+            Toast.makeText(SecondActivity.this, "Todo Bien!", Toast.LENGTH_SHORT).show();
         }
     }
 
