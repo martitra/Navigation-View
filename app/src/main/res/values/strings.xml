@@ -17,4 +17,7 @@
     <string name="title_activity_forth">ForthActivity</string>
     <string name="title_activity_fourth">Mr Four</string>
     <string name="txt_superhero">Superhero</string>
+    <string name="hint_email">Email Adress</string>
+    <string name="hint_password">password</string>
+    <string name="button_login">Login</string>
 </resources>

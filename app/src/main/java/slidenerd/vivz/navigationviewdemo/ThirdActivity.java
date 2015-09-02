@@ -19,20 +19,15 @@ import android.widget.TextView;
 
 public class ThirdActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private TabLayout mTabLayout;
-    private ViewPager mPager;
-    private MyPagerAdapter mAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
-        mAdapter = new MyPagerAdapter(getSupportFragmentManager());
-        mToolbar = (Toolbar) findViewById(R.id.app_bar);
+        MyPagerAdapter mAdapter = new MyPagerAdapter(getSupportFragmentManager());
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(mToolbar);
-        mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        mPager = (ViewPager) findViewById(R.id.pager);
+        TabLayout mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        ViewPager mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
         mTabLayout.setTabsFromPagerAdapter(mAdapter);
 
@@ -99,8 +94,7 @@ class MyPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        ThirdActivity.MyFragment myFragment = ThirdActivity.MyFragment.newInstance(position);
-        return myFragment;
+        return ThirdActivity.MyFragment.newInstance(position);
     }
 
     @Override

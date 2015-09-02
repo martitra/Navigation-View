@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class SecondActivity extends AppCompatActivity {
     private TextInputLayout mPasswordLayout;
     private EditText mInputEmail;
     private EditText mInputPassword;
-    private View.OnClickListener mSnackBarClickListener = new View.OnClickListener(){
+    private View.OnClickListener mSnackBarClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
@@ -28,7 +29,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-        mRoot =(RelativeLayout) findViewById(R.id.root_activity_second);
+        mRoot = (RelativeLayout) findViewById(R.id.root_activity_second);
         mEmailLayout = (TextInputLayout) findViewById(R.id.input_layout);
         mPasswordLayout = (TextInputLayout) findViewById(R.id.input_password_layout);
         mInputEmail = (EditText) findViewById(R.id.input_email);
@@ -57,34 +58,31 @@ public class SecondActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void submit(View view){
+    public void submit(View view) {
         boolean isEmptyEmail = isEmptyEmail();
         boolean isEmptyPassword = isEmptyPasswoprd();
 
-        if (isEmptyEmail && isEmptyPassword){
-            Snackbar.make(mRoot, "One or More Field are black",Snackbar.LENGTH_SHORT)
+        if (isEmptyEmail && isEmptyPassword) {
+            Snackbar.make(mRoot, "One or More Field are black", Snackbar.LENGTH_SHORT)
                     .setAction(getString(R.string.text_dismiss), mSnackBarClickListener)
                     .show();
-        } else if (isEmptyEmail && !isEmptyPassword){
+        } else if (isEmptyEmail) {
             mEmailLayout.setError("Email cannot be empty");
             mPasswordLayout.setError(null);
-        } else if (!isEmptyEmail && isEmptyPassword){
+        } else if (isEmptyPassword) {
             mPasswordLayout.setError("Password cannot be empty");
             mEmailLayout.setError(null);
         } else {
             //All good here
+            Toast.makeText(SecondActivity.this, "else", Toast.LENGTH_SHORT).show();
         }
     }
 
     public boolean isEmptyEmail() {
-        return mInputEmail.getText() == null
-                || mInputEmail.getText().toString() == null
-                || mInputEmail.getText().toString().isEmpty();
+        return mInputEmail.getText() == null || mInputEmail.getText().toString().isEmpty();
     }
 
     public boolean isEmptyPasswoprd() {
-        return mInputPassword.getText() == null
-                || mInputPassword.getText().toString() == null
-                || mInputPassword.getText().toString().isEmpty();
+        return mInputPassword.getText() == null || mInputPassword.getText().toString().isEmpty();
     }
 }

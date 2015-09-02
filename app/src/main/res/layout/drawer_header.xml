@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:padding="16dp"
-        android:gravity="right"
+        android:gravity="end"
         style="@style/TextAppearance.AppCompat.Title"
-        android:text="Hello Vivz"/>
+        android:text="@string/hello_world"/>
 
 </FrameLayout>

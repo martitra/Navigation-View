@@ -30,37 +30,28 @@ public class FourthActivity extends AppCompatActivity {
 
     // Need this to link with the Snackbar
     private CoordinatorLayout mCoordinator;
-    //Need this to set the title of the app bar
-    private CollapsingToolbarLayout mCollapsingToolbarLayout;
-    private FloatingActionButton mFab;
-    private Toolbar mToolbar;
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private ViewPager mPager;
-    private YourPagerAdapter mAdapter;
-    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forth);
         mCoordinator = (CoordinatorLayout) findViewById(R.id.root_coordinator);
-        mCollapsingToolbarLayout = (CollapsingToolbarLayout)
+        CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout)
                 findViewById(R.id.collapsing_toolbar_layout);
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToolbar = (Toolbar) findViewById(R.id.app_bar);
+        FloatingActionButton mFab = (FloatingActionButton) findViewById(R.id.fab);
+        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(mToolbar);
 
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.drawer_open, R.string.drawer_close);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        mAdapter = new YourPagerAdapter(getSupportFragmentManager());
-        mPager = (ViewPager) findViewById(R.id.view_pager);
+        TabLayout mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        YourPagerAdapter mAdapter = new YourPagerAdapter(getSupportFragmentManager());
+        ViewPager mPager = (ViewPager) findViewById(R.id.view_pager);
         mPager.setAdapter(mAdapter);
         //Notice how the Tab Layout links with the Pager Adapter
         mTabLayout.setTabsFromPagerAdapter(mAdapter);
@@ -123,8 +114,6 @@ public class FourthActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            Bundle arguments = getArguments();
-            int pageNumber = arguments.getInt(ARG_PAGE);
             RecyclerView recyclerView = new RecyclerView(getActivity());
             recyclerView.setAdapter(new YourRecyclerAdapter(getActivity()));
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -142,8 +131,7 @@ class YourPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        FourthActivity.MyFragment myFragment = FourthActivity.MyFragment.newInstance(position);
-        return myFragment;
+        return FourthActivity.MyFragment.newInstance(position);
     }
 
     @Override
@@ -212,8 +200,7 @@ class YourRecyclerAdapter extends RecyclerView.Adapter<YourRecyclerAdapter.YourR
     @Override
     public YourRecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View root = inflater.inflate(R.layout.custom_row, viewGroup, false);
-        YourRecyclerViewHolder holder = new YourRecyclerViewHolder(root);
-        return holder;
+        return new YourRecyclerViewHolder(root);
     }
 
     @Override
